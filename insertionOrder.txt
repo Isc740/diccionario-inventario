@@ -1,0 +1,15 @@
+marca
+rol
+categoriaproducto
+ciudad
+iva
+permiso
+proveedores
+stock
+usuario
+producto
+factura
+modelo
+facturadetalle
+permisorol
+proveedoresproducto

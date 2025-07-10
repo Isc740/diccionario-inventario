@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="db_abaa66_inv" schema="db_abaa66_inv" type="MySQL - 8.0.40">
+   <tables>
+      <table catalog="db_abaa66_inv" name="categoriaproducto" numRows="12" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="CatID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="CatIDFK" foreignKey="producto_ibfk_1" implied="false" onDeleteCascade="false" table="producto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="CatDescripcion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="CatID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="CatID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="ciudad" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="CiuID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="CiuIDFK" foreignKey="usuario_ciudad_FK" implied="false" onDeleteCascade="false" table="usuario"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="CiuNombre" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="CiuID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="CiuID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="factura" numRows="7" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="FacID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="FacIDFK" foreignKey="facturadetalle_ibfk_1" implied="false" onDeleteCascade="true" table="facturadetalle"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="FacFecha" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="FacTipo" nullable="true" remarks="" size="10" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="FacMetodoPago" nullable="true" remarks="Metodo de pago" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="FacObservaciones" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="FacEstado" nullable="true" remarks="Pagada / Pendiente" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="FacFormaEntrega" nullable="true" remarks="Envio / Retiro en tienda" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="UsuIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="UsuID" foreignKey="factura_ibfk_1" implied="false" onDeleteCascade="false" table="usuario"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="8" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="FacID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="FacID"/>
+         </index>
+         <index name="factura_ibfk_1" unique="false">
+            <column ascending="true" name="UsuIDFK"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="facturadetalle" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="DetID" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="DetCantidad" nullable="false" remarks="" size="10" type="INT UNSIGNED" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="FacIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="FacID" foreignKey="facturadetalle_ibfk_1" implied="false" onDeleteCascade="true" table="factura"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ProIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="ProID" foreignKey="facturadetalle_producto_FK" implied="false" onDeleteCascade="false" table="producto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="DetID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="DetID"/>
+         </index>
+         <index name="facturadetalle_ibfk_1" unique="false">
+            <column ascending="true" name="FacIDFK"/>
+         </index>
+         <index name="facturadetalle_unique" unique="true">
+            <column ascending="true" name="ProIDFK"/>
+            <column ascending="true" name="FacIDFK"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="iva" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="IvaID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="IvaIDFK" foreignKey="producto_ibfk_4" implied="false" onDeleteCascade="false" table="producto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="1" name="IvaPorcentajeDecimal" nullable="false" remarks="" size="5" type="DECIMAL" typeCode="3"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="IvaID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="IvaID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="marca" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="MarID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="MarIDFK" foreignKey="modelo_marca_FK" implied="false" onDeleteCascade="false" table="modelo"/>
+            <child catalog="db_abaa66_inv" column="MarIDFK" foreignKey="producto_marca_FK" implied="false" onDeleteCascade="false" table="producto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="MarDescripcion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="MarID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="MarID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="modelo" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="ModID" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ModDescripcion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="MarIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="MarID" foreignKey="modelo_marca_FK" implied="false" onDeleteCascade="false" table="marca"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="3" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="ModID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="ModID"/>
+         </index>
+         <index name="modelo_marca_FK" unique="false">
+            <column ascending="true" name="MarIDFK"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="permiso" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="PerID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="PerIDFK" foreignKey="PermisoRol_permiso_FK" implied="false" onDeleteCascade="false" table="permisorol"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="PerNombre" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="PerDescripcion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="PerID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="PerID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="permisorol" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="PerIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="PerID" foreignKey="PermisoRol_permiso_FK" implied="false" onDeleteCascade="false" table="permiso"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="RolIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="RolID" foreignKey="PermisoRol_rol_FK" implied="false" onDeleteCascade="false" table="rol"/>
+         </column>
+         <index name="PermisoRol_permiso_FK" unique="false">
+            <column ascending="true" name="PerIDFK"/>
+         </index>
+         <index name="PermisoRol_rol_FK" unique="false">
+            <column ascending="true" name="RolIDFK"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="producto" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="ProID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="ProIDFK" foreignKey="facturadetalle_producto_FK" implied="false" onDeleteCascade="false" table="facturadetalle"/>
+            <child catalog="db_abaa66_inv" column="ProIDFK" foreignKey="proveedoresproducto_producto_FK" implied="false" onDeleteCascade="false" table="proveedoresproducto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ProImagen" nullable="true" remarks="" size="150" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ProDescripcion" nullable="false" remarks="" size="150" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="3" name="ProPrecio" nullable="false" remarks="" size="9" type="DECIMAL" typeCode="3"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="CatIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="CatID" foreignKey="producto_ibfk_1" implied="false" onDeleteCascade="false" table="categoriaproducto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="IvaIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="IvaID" foreignKey="producto_ibfk_4" implied="false" onDeleteCascade="false" table="iva"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="MarIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="MarID" foreignKey="producto_marca_FK" implied="false" onDeleteCascade="false" table="marca"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="StockIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="StoID" foreignKey="producto_ibfk_5" implied="false" onDeleteCascade="false" table="stock"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="8" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="ProID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="ProID"/>
+         </index>
+         <index name="IvaIDFK" unique="false">
+            <column ascending="true" name="IvaIDFK"/>
+         </index>
+         <index name="producto_ibfk_1" unique="false">
+            <column ascending="true" name="CatIDFK"/>
+         </index>
+         <index name="producto_marca_FK" unique="false">
+            <column ascending="true" name="MarIDFK"/>
+         </index>
+         <index name="StockIDFK" unique="true">
+            <column ascending="true" name="StockIDFK"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="proveedores" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="PrvID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="PrvIDFK" foreignKey="proveedoresproducto_proveedores_FK" implied="false" onDeleteCascade="false" table="proveedoresproducto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="PrvNIT" nullable="false" remarks="Numero NIT" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="PrvDV" nullable="false" remarks="Digito de Verificacion" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="PrvRazonSocial" nullable="true" remarks="" size="150" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="PrvEmail" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="PrvTelefono" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="PrvDireccion" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="PrvBanco" nullable="true" remarks="Nombre del Banco" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="PrvCuentaBanco" nullable="true" remarks="Numero de la cuenta bancaria" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="PrvActividad" nullable="true" remarks="Codigo CIIU actividad Economica" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="PrvEstadoRut" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="11" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="PrvID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="PrvID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="proveedoresproducto" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="PrvIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="PrvID" foreignKey="proveedoresproducto_proveedores_FK" implied="false" onDeleteCascade="false" table="proveedores"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ProIDFK" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="ProID" foreignKey="proveedoresproducto_producto_FK" implied="false" onDeleteCascade="false" table="producto"/>
+         </column>
+         <index name="proveedoresproducto_producto_FK" unique="false">
+            <column ascending="true" name="ProIDFK"/>
+         </index>
+         <index name="proveedoresproducto_proveedores_FK" unique="false">
+            <column ascending="true" name="PrvIDFK"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="rol" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="RolID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="RolIDFK" foreignKey="PermisoRol_rol_FK" implied="false" onDeleteCascade="false" table="permisorol"/>
+            <child catalog="db_abaa66_inv" column="RolIDFK" foreignKey="usuario_rol_FK" implied="false" onDeleteCascade="false" table="usuario"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="RolNombre" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="RolDescripcion" nullable="true" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="3" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="RolID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="RolID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="stock" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="StoID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="StockIDFK" foreignKey="producto_ibfk_5" implied="false" onDeleteCascade="false" table="producto"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="StoCantidad" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="StoFechaVencimiento" nullable="false" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="StoFechaActualizacion" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="4" name="Eliminado" nullable="false" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="StoID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="StoID"/>
+         </index>
+      </table>
+      <table catalog="db_abaa66_inv" name="usuario" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="UsuID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_abaa66_inv" column="UsuIDFK" foreignKey="factura_ibfk_1" implied="false" onDeleteCascade="false" table="factura"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="UsuTipoDocumento" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="UsuDocumento" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="UsuNombre" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="UsuApellido" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="UsuEmail" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="UsuContraseña" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="UsuDireccion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="RolIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="RolID" foreignKey="usuario_rol_FK" implied="false" onDeleteCascade="false" table="rol"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="CiuIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_abaa66_inv" column="CiuID" foreignKey="usuario_ciudad_FK" implied="false" onDeleteCascade="false" table="ciudad"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="10" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="UsuID" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="UsuID"/>
+         </index>
+         <index name="usuario_ciudad_FK" unique="false">
+            <column ascending="true" name="CiuIDFK"/>
+         </index>
+         <index name="usuario_rol_FK" unique="false">
+            <column ascending="true" name="RolIDFK"/>
+         </index>
+      </table>
+   </tables>
+</database>
