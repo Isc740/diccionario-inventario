@@ -230,20 +230,18 @@
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="UsuID" nullable="false" remarks="" size="10" type="INT" typeCode="4">
             <child catalog="db_abaa66_inv" column="UsuIDFK" foreignKey="factura_ibfk_1" implied="false" onDeleteCascade="false" table="factura"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="UsuTipoDocumento" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="UsuDocumento" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="UsuNombre" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="UsuApellido" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="UsuEmail" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="UsuContraseña" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="UsuDireccion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="RolIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="UsuNombre" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="UsuApellido" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="UsuEmail" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="UsuContraseña" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="UsuDireccion" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="RolIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
             <parent catalog="db_abaa66_inv" column="RolID" foreignKey="usuario_rol_FK" implied="false" onDeleteCascade="false" table="rol"/>
          </column>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="CiuIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="CiuIDFK" nullable="true" remarks="" size="10" type="INT" typeCode="4">
             <parent catalog="db_abaa66_inv" column="CiuID" foreignKey="usuario_ciudad_FK" implied="false" onDeleteCascade="false" table="ciudad"/>
          </column>
-         <column autoUpdated="false" defaultValue="0" digits="0" id="10" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="8" name="Eliminado" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
          <primaryKey column="UsuID" sequenceNumberInPK="1"/>
          <index name="PRIMARY" unique="true">
             <column ascending="true" name="UsuID"/>
